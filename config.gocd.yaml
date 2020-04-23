@@ -1,6 +1,6 @@
 #ci.gocd.yaml
 format_version: 9
-pipeline:
+pipelines:
   compile-and-testing:
     group: mygroup
     materials:
