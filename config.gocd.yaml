@@ -22,27 +22,58 @@ pipelines:
             - build:
                source: target/scala-2.12/Akka-HTTP-assembly-0.1.jar
                destination: ''
-  creating-and-publish-docker-image:
-    group: mygroup
+  creating-and-pushing-docker-image-to-dockerhub:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
     materials:
-      mygit:
+      CompileAndTesting:
+        ignore_for_scheduling: false
+        pipeline: CompileAndTesting
+        stage: SbtAssembly
+      Akka-http-repo:
         git: https://github.com/sgrG24/Akka-Http.git
+        shallow_clone: false
+        auto_update: true
         branch: master
-      compile-and-testing:
-        pipeline: compile-and-testing
-        stage: sbt-assembly
     stages:
-     - fetching-artifact:
-       fetch_materials: true
-       keep_artifacts: false
-       clean_workspace: false
-       jobs:
-         fetching-artifact:
-           tasks:
-            - fetch: 
-               source: Akka-HTTP-assembly-0.1.jar
-               destinations: ''
-               pipeline: compile-and-testing
-               stage: sbt-assembly
-               is_file: true
-        
+    - fetching-artifacts:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          fetching-artifact:
+            timeout: 0
+            tasks:
+            - fetch:
+                is_file: true
+                source: Akka-HTTP-assembly-0.1.jar
+                destination: ''
+                pipeline: CompileAndTesting
+                stage: SbtAssembly
+                job: SbtAssembltJob
+                artifact_origin: gocd
+                run_if: passed
+            - exec:
+                arguments:
+                - build
+                - -t
+                - sagar2405/akka-http-app:2
+                - ./
+                command: docker
+                run_if: passed
+            - exec:
+                arguments:
+                - images
+                command: docker
+                run_if: passed
+            - exec:
+                arguments:
+                - push
+                - sagar2405/akka-http-app:2
+                command: docker
+                run_if: passed
