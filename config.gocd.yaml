@@ -14,10 +14,10 @@ pipelines:
               command: ./compile
       - sbt-assembly:
           tasks:
-          - exec:
-            command: sbt
-            arguments: 
-             - assembly
+            - exec:
+              command: sbt
+              arguments: 
+               - assembly
           artifacts:
           - build:
               source: target/scala-2.12/Akka-HTTP-assembly-0.1.jar
