@@ -11,4 +11,4 @@ pipelines:
       - compiling-and-testing:
           tasks:
             - exec: 
-              command: ./compile
+                command: ./compile
