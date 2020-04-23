@@ -22,7 +22,7 @@ pipelines:
             - build:
                source: target/scala-2.12/Akka-HTTP-assembly-0.1.jar
                destination: ''
-  creating-and-pushing-docker-image-to-dockerhub:
+  creating-and-pushing-docker-image:
     group: mygroup
     materials:
       mygit:
