@@ -8,13 +8,13 @@ pipelines:
         git: https://github.com/sgrG24/Akka-Http.git
         branch: master
     stages:
-      compiling-and-testing:
+      - compiling-and-testing:
         jobs:
           running-cmd-job:
             tasks:
               exec: 
                 command: ./compile
-      sbt-assembly:
+      - sbt-assembly:
         jobs:
           sbt-assembly-job:
             tasks:
