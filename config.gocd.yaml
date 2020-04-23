@@ -9,6 +9,8 @@ pipelines:
         branch: master
     stages:
       - compiling-and-testing:
-          tasks:
-            - exec: 
+          jobs:
+          running-cmd-job:
+            tasks:
+              exec: 
                 command: ./compile
