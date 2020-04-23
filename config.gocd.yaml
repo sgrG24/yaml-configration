@@ -1,14 +1,13 @@
 pipelines:
-	pipe1:
-		group: sample
-		materials:
-			mygit:
-				git: https://github.com/sgrG24/newCPPproject.git
-				branch: master
-		stages:
-			build:
-      	jobs:
-					build:
-	  				tasks:
-	    				- exec: 
-	        			command: ./a.out
+  pipe1:
+    group: sample
+    materials:
+      mygit:
+        git: https://github.com/sgrG24/newCPPproject.git
+	branch: master
+    stages:
+      build:
+        jobs:
+	  tasks:
+	    - exec: 
+	        command: ./a.out
