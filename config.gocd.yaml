@@ -2,7 +2,7 @@
 format_version: 9
 pipelines:
   compile-and-testing:
-    group: defaultGroup
+    group: mygroup
     materials:
       mygit:
         git: https://github.com/sgrG24/Akka-Http.git
