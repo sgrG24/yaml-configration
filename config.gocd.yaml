@@ -14,11 +14,11 @@ pipelines:
               command: ./compile
       - sbt-assembly:
           tasks:
-            - exec:
+           - exec:
               command: sbt
               arguments: 
                - assembly
           artifacts:
-          - build:
+            - build:
               source: target/scala-2.12/Akka-HTTP-assembly-0.1.jar
               destination: ''
