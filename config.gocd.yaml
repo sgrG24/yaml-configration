@@ -48,6 +48,7 @@ pipelines:
                 source: Akka-HTTP-assembly-0.1.jar
                 destination: ''
                 pipeline: compile-and-testing
+                job: sbt-assembly
                 stage: sbt-assembly
                 run_if: passed
             - exec:
