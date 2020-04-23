@@ -22,3 +22,27 @@ pipelines:
             - build:
                source: target/scala-2.12/Akka-HTTP-assembly-0.1.jar
                destination: ''
+  creating-and-publish-docker-image:
+    group: mygroup
+    materials:
+      mygit:
+        git: https://github.com/sgrG24/Akka-Http.git
+        branch: master
+      compile-and-testing:
+        pipeline: compile-and-testing
+        stage: sbt-assembly
+    stages:
+     - fetching-artifact:
+       fetch_materials: true
+       keep_artifacts: false
+       clean_workspace: false
+       jobs:
+         fetching-artifact:
+           tasks:
+            - fetch: 
+               source: Akka-HTTP-assembly-0.1.jar
+               destinations: ''
+               pipeline: compile-and-testing
+               stage: sbt-assembly
+               is_file: true
+        
