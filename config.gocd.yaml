@@ -10,5 +10,5 @@ pipelines:
     stages:
       - compiling-and-testing:
           tasks:
-            exec: 
+           - exec: 
               command: ./compile
