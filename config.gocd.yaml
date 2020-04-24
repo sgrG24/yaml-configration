@@ -54,11 +54,7 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - docker
-                - build
-                - -t
-                - sagar2405/akka-http-app:${GO_PIPELINE_LABEL}
-                - ./
+                - docker build -t sagar2405/akka-http-app:${GO_PIPELINE_LABEL} ./
                 command: sh
                 run_if: passed
             - exec:
