@@ -53,11 +53,13 @@ pipelines:
                 run_if: passed
             - exec:
                 arguments:
+                - -c
+                - docker
                 - build
                 - -t
                 - sagar2405/akka-http-app:${GO_PIPELINE_LABEL}
                 - ./
-                command: sh -c docker
+                command: sh
                 run_if: passed
             - exec:
                 arguments:
@@ -66,7 +68,9 @@ pipelines:
                 run_if: passed
             - exec:
                 arguments:
+                - -c
+                - docker
                 - push
                 - sagar2405/akka-http-app:${GO_PIPELINE_LABEL}
-                command: sh -c docker
+                command: sh
                 run_if: passed
