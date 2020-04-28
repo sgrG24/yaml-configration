@@ -70,7 +70,6 @@ pipelines:
                 run_if: passed
             - exec:
                 arguments:
-                - -c
-                - kubectl apply -f ./ops/akka-http-app-delpoyment-definition.yml
-                command: sh
+                - apply -f ./ops/akka-http-app-delpoyment-definition.yml
+                command: kubectl
                 run_if: passed
