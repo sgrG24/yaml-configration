@@ -11,7 +11,7 @@ pipelines:
       - compiling-and-testing:
           tasks:
            - exec: 
-              command: ./compile
+              command: ./ops/compile
       - sbt-assembly:
           tasks:
            - exec:
